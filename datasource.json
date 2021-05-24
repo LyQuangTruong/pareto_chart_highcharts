@@ -1,0 +1,18 @@
+[
+  {
+    "adaptor": "firebase",
+    "firebase": {
+      "apiKey": "AIzaSyDnnUye5-A5bYOIDbLHghkN7_PeMP_Eadw",
+      "authDomain": "temperature-humidity-place.firebaseapp.com",
+      "databaseURL": "https://temperature-humidity-place.firebaseio.com",
+      "projectId": "temperature-humidity-place",
+      "storageBucket": "temperature-humidity-place.appspot.com",
+      "messagingSenderId": "1054055224282"
+    },
+    "limit": 1000,
+    "ref": "/",
+    "title": "firebase",
+    "id": "fireabse",
+    "name": "firebase"
+  }
+]

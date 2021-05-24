@@ -1,0 +1,211 @@
+{
+    "defaultSettings":
+    {
+        "VerticalAxis": "temperature",
+        "MaxV": "100",
+        "MinV": "0",
+        "HorizontalAxis": "humidity",
+        "MaxH": "100",
+        "MinH": "0",
+        "Legend": "Place",
+        "Timestamp": "ts",
+        "Limit": "100",
+        "Tooltip": [{
+                "tag":""
+            }]
+    },
+    "sampleData": [ 
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"Tokyo",
+           "temperature":15,
+           "humidity":54,
+           "pressure":1132,
+           "ts":1570161547250
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"Hanoi",
+           "temperature":32,
+           "humidity":80,
+           "pressure":1132,
+           "ts":1570161447467
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Tokyo",
+           "temperature":28,
+           "humidity":60,
+           "pressure":1012,
+           "ts":1570161447450
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Hanoi",
+           "temperature":40,
+           "humidity":52,
+           "pressure":1121,
+           "ts":1570161447337
+        },
+        { 
+           "DeviceName":"DeviceC",
+           "Place":"New York",
+           "temperature":26,
+           "humidity":65,
+           "pressure":1102,
+           "ts":1570161447452
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"New York",
+           "temperature":39,
+           "humidity":88,
+           "pressure":1102,
+           "ts":1570161448452
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"Hanoi",
+           "temperature":39,
+           "humidity":83,
+           "pressure":1123,
+           "ts":1570161447447
+        },
+        { 
+           "DeviceName":"DeviceC",
+           "Place":"Tokyo",
+           "temperature":27,
+           "humidity":71,
+           "pressure":1012,
+           "ts":1570161448450
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"New York",
+           "temperature":20,
+           "humidity":66,
+           "pressure":1102,
+           "ts":1570161437452
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Hanoi",
+           "temperature":34,
+           "humidity":81,
+           "pressure":1312,
+           "ts":1570161447427
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Hanoi",
+           "temperature":33,
+           "humidity":82,
+           "pressure":1122,
+           "ts":1570161447437
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Tokyo",
+           "temperature":29,
+           "humidity":78,
+           "pressure":1013,
+           "ts":1570161447492
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"New York",
+           "temperature":29,
+           "humidity":68,
+           "pressure":1131,
+           "ts":1570151437452
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"New York",
+           "temperature":23,
+           "humidity":67,
+           "pressure":1103,
+           "ts":1570161441452
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Tokyo",
+           "temperature":21,
+           "humidity":82,
+           "pressure":1011,
+           "ts":1570161447310
+        },
+        { 
+           "DeviceName":"DeviceC",
+           "Place":"New York",
+           "temperature":36,
+           "humidity":69,
+           "pressure":1102,
+           "ts":1570151447452
+        },
+        { 
+           "DeviceName":"DeviceC",
+           "Place":"Tokyo",
+           "temperature":26,
+           "humidity":64,
+           "pressure":1132,
+           "ts":1570161447350
+        },
+        { 
+           "DeviceName":"DeviceB",
+           "Place":"Tokyo",
+           "temperature":22,
+           "humidity":40,
+           "pressure":1013,
+           "ts":1570161447550
+        },
+        { 
+           "DeviceName":"DeviceA",
+           "Place":"Tokyo",
+           "temperature":18,
+           "humidity":38,
+           "pressure":1013,
+           "ts":1570161447140
+        }
+     ],
+    "settingSchema": [
+    {
+        "type": "key",
+        "name": "VerticalAxis"
+    }, {
+        "type": "text",
+        "name": "MaxV"
+    }, {
+        "type": "text",
+        "name": "MinV"
+    }, {
+        "type": "key",
+        "name": "HorizontalAxis"
+    }, {
+        "type": "text",
+        "name": "MaxH"
+    }, {
+        "type": "text",
+        "name": "MinH"
+    }, {
+        "type": "key",
+        "name": "Legend"
+    }, {
+        "type": "text",
+        "name": "Timestamp"
+    }, {
+        "type": "select",
+        "name": "Limit",
+        "options": ["10", "20", "30", "all"]
+    }, {
+        "type": "list",
+        "name": "Tooltip",
+        "children": [{
+            "type": "text",
+            "name": "Place"
+            }, {
+            "type": "text",
+            "name": "DeviceName" 
+        }]  
+    }]              
+}
