@@ -1,65 +1,51 @@
 var d3 = require("d3");
 var Highcharts = require("highcharts");
+require("highcharts/modules/pareto")(Highcharts);
 var moment = require("moment");
-
 var colData = [];
-var tempSeries = [];
 var categoryX = [];
+var seriesData = [];
 
-BarChartHighChart.defaultSettings = {
+ParetoChartHighChart.defaultSettings = {
   HorizontalAxis: "value",
-  Legend: "category",
+  Legend: "reason",
   Timestamp: "ts",
-  Format: "YYYY/MM/DD",
-  Title: "Bar Chart high charts",
+  Title: "Pareto Chart high charts",
 };
 
-BarChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
+ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
   [
     {
       type: "text",
       name: "Title",
     },
-    {
-      type: "select",
-      name: "Format",
-      options: ["YYYY/MM/DD", "MM/YYYY"],
-    },
   ],
-  BarChartHighChart.defaultSettings
+  ParetoChartHighChart.defaultSettings
 );
 
-function createBarChartHighChart(that) {
-  if (tempSeries != []) tempSeries = [];
+function createParetoChartHighChart(that) {
+  if (seriesData != []) seriesData = [];
+  if (categoryX != []) categoryX = [];
   ConvertDataAPI(that);
-  that.barChartHighChartC3 = Highcharts.chart("root", {
+  that.paretoChartHighChartC3 = Highcharts.chart("root", {
     chart: {
-      renderTo: "container",
+      renderTo: "root",
       type: "column",
     },
     title: {
-      text: "Restaurants Complaints",
+      text: that.settings.Title,
     },
     tooltip: {
       shared: true,
     },
     xAxis: {
-      categories: [
-        "Overpriced",
-        "Small portions",
-        "Wait time",
-        "Food is tasteless",
-        "No atmosphere",
-        "Not clean",
-        "Too noisy",
-        "Unfriendly staff",
-      ],
+      categories: categoryX,
       crosshair: true,
     },
     yAxis: [
       {
         title: {
-          text: "",
+          text: "value",
         },
       },
       {
@@ -89,16 +75,16 @@ function createBarChartHighChart(that) {
         },
       },
       {
-        name: "Complaints",
+        name: that.settings.Legend,
         type: "column",
         zIndex: 2,
-        data: [755, 222, 151, 86, 72, 51, 36, 10],
+        data: seriesData,
       },
     ],
   });
 }
 
-function BarChartHighChart(settings, options) {
+function ParetoChartHighChart(settings, options) {
   var that = this;
   this.el = window.document.createElement("div");
   this.el.id = "chart";
@@ -115,12 +101,11 @@ function BarChartHighChart(settings, options) {
   this.margin = { top: 20, right: 80, bottom: 30, left: 50 };
 
   setTimeout(function () {
-    createBarChartHighChart(that);
+    createParetoChartHighChart(that);
   }, 100);
 }
 
-BarChartHighChart.prototype.addData = function (data) {
-  console.log(data);
+ParetoChartHighChart.prototype.addData = function (data) {
   var that = this;
   function fireError(err) {
     if (that.errorCallback) {
@@ -134,12 +119,11 @@ BarChartHighChart.prototype.addData = function (data) {
     var value = this.settings.HorizontalAxis;
     var legend = this.settings.Legend;
     var ts = this.settings.Timestamp;
-    var limit = this.settings.Limit;
 
     this.filteredData = data
       .filter((d) => {
-        let hasLabel = d.hasOwnProperty("category");
-        const dLabel = d["category"];
+        let hasLabel = d.hasOwnProperty("reason");
+        const dLabel = d["reason"];
         if (typeof dLabel !== "string") {
           fireError("VerticalAxis is not a string");
           hasLabel = false;
@@ -163,7 +147,7 @@ BarChartHighChart.prototype.addData = function (data) {
         }
         return hasTs;
       })
-      .sort((a, b) => b.ts - a.ts);
+      .sort((a, b) => b.value - a.value);
     if (this.filteredData.length === 0) {
       return;
     }
@@ -173,13 +157,6 @@ BarChartHighChart.prototype.addData = function (data) {
         return d[legend];
       })
       .entries(this.filteredData)
-      .map(function (d, i) {
-        d.values = d.values.filter(function (dd, ii) {
-          if (!isNaN(limit)) return ii < limit;
-          return ii;
-        });
-        return d;
-      })
       .sort(function (a, b) {
         if (a.key < b.key) return -1;
         if (a.key > b.key) return 1;
@@ -191,45 +168,36 @@ BarChartHighChart.prototype.addData = function (data) {
   }
 };
 
-BarChartHighChart.prototype.clearData = function () {
+ParetoChartHighChart.prototype.clearData = function () {
   this.data = {};
   colData = [];
-  tempSeries = [];
+  seriesData = [];
+  categoryX = [];
   this.refresh();
 };
 
-BarChartHighChart.prototype.convertData = function () {
+ParetoChartHighChart.prototype.convertData = function () {
   colData = this.data;
   this.refresh();
 };
 
 function ConvertDataAPI(that) {
-  tempSeries = [];
   categoryX = [];
+  seriesData = [];
   colData.forEach(function (val, index) {
-    var dataVal = [];
     for (var i = 0; i < val.values.length; i++) {
-      dataVal.push(colData[index]["values"][i]["value"]);
-      if (index == 0) {
-        categoryX.push(
-          moment(colData[index]["values"][i]["ts"]).format(that.settings.Format)
-        );
-      }
+      seriesData.push(colData[index]["values"][i]["value"]);
+      categoryX.push(colData[index]["values"][i]["reason"]);
     }
-    tempSeries.push({
-      data: dataVal,
-      name: colData[index]["key"],
-    });
   });
 }
 
-BarChartHighChart.prototype.resize = function (options) {
+ParetoChartHighChart.prototype.resize = function (options) {
   this.width = options.width;
   this.height = options.height - 50;
 };
 
-var defaultData = [];
-BarChartHighChart.prototype.refresh = function () {
+ParetoChartHighChart.prototype.refresh = function () {
   var that = this;
 
   ConvertDataAPI(that);
@@ -238,51 +206,26 @@ BarChartHighChart.prototype.refresh = function () {
   if (this.axisY) this.axisY.remove();
   if (this.yText) this.yText.remove();
 
-  if (tempSeries.length > 0 && defaultData.length == 0) {
-    tempSeries.forEach(function (val, i) {
-      var temp_data = ["", ""];
-      var temp_name = val.name;
-      var temp_ts = [""];
-
-      defaultData.push({
-        data: temp_data,
-        name: temp_name,
-        ts: temp_ts,
-      });
-    });
-  }
-  if (tempSeries.length == 0 && defaultData.length > 0)
-    tempSeries = defaultData;
-
-  if (that.barChartHighChartC3) {
+  if (that.paretoChartHighChartC3) {
     that.barChartHighChartC3 = Highcharts.chart("root", {
       chart: {
-        renderTo: "container",
+        renderTo: "root",
         type: "column",
       },
       title: {
-        text: "Restaurants Complaints",
+        text: that.settings.Title,
       },
       tooltip: {
         shared: true,
       },
       xAxis: {
-        categories: [
-          "Overpriced",
-          "Small portions",
-          "Wait time",
-          "Food is tasteless",
-          "No atmosphere",
-          "Not clean",
-          "Too noisy",
-          "Unfriendly staff",
-        ],
+        categories: categoryX,
         crosshair: true,
       },
       yAxis: [
         {
           title: {
-            text: "",
+            text: "value",
           },
         },
         {
@@ -312,24 +255,27 @@ BarChartHighChart.prototype.refresh = function () {
           },
         },
         {
-          name: "Complaints",
+          name: that.settings.Legend,
           type: "column",
           zIndex: 2,
-          data: [755, 222, 151, 86, 72, 51, 36, 10],
+          data: seriesData,
         },
       ],
     });
   }
 };
 
-BarChartHighChart.prototype.onError = function (errorCallback) {
+ParetoChartHighChart.prototype.onError = function (errorCallback) {
   this.errorCallback = errorCallback;
 };
 
-BarChartHighChart.prototype.getEl = function () {
+ParetoChartHighChart.prototype.getEl = function () {
   return this.el;
 };
 
-window.EnebularIntelligence.register("barChartHighChart", BarChartHighChart);
+window.EnebularIntelligence.register(
+  "paretoChartHighChart",
+  ParetoChartHighChart
+);
 
-module.exports = BarChartHighChart;
+module.exports = ParetoChartHighChart;
