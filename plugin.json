@@ -1,298 +1,41 @@
 {
   "defaultSettings": {
-    "VerticalAxis": "temperature",
-    "MaxV": "100",
-    "MinV": "0",
-    "HorizontalAxis": "humidity",
-    "MaxH": "100",
-    "MinH": "0",
-    "Legend": "Place",
+    "HorizontalAxis": "value",
+    "Legend": "reason",
     "Timestamp": "ts",
-    "Limit": "100",
-    "Format": "YYYY/MM/DD",
-    "Title": "Bar Chart high charts",
-    "Tooltip": [
-      {
-        "tag": ""
-      }
-    ]
+    "Title": "Pareto Chart high charts"
   },
   "sampleData": [
     {
-      "category": "temperature",
-      "ts": 1622022373231,
-      "value": 28.1
+      "reason": "よごれ",
+      "ts": 1622097522686,
+      "value": 269
     },
     {
-      "category": "humidity",
-      "ts": 1622022373231,
-      "value": 57.66
+      "reason": "キズ",
+      "ts": 1622097522686,
+      "value": 159
     },
     {
-      "category": "humidity",
-      "ts": 1622022374225,
-      "value": 57.66
+      "reason": "ホコリ",
+      "ts": 1622097522686,
+      "value": 93
     },
     {
-      "category": "temperature",
-      "ts": 1622022374225,
-      "value": 28.1
+      "reason": "へこみ",
+      "ts": 1622097522686,
+      "value": 56
     },
     {
-      "category": "temperature",
-      "ts": 1622022375207,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022375207,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022376196,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022376196,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022377216,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022377216,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022378266,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022378266,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022379225,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022379225,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022380186,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022380186,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022381237,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022381237,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022382258,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022382258,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022383296,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022383296,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022384209,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022384209,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022385226,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022385226,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022386277,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022386277,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022387265,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022387265,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022388215,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022388215,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022389303,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022389303,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022390210,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022390210,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022391319,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022391319,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022392189,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022392189,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022393207,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022393207,
-      "value": 57.66
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022394233,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022394233,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022395247,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022395247,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022396268,
-      "value": 57.66
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022396268,
-      "value": 28.1
-    },
-    {
-      "category": "temperature",
-      "ts": 1622022397197,
-      "value": 28.1
-    },
-    {
-      "category": "humidity",
-      "ts": 1622022397197,
-      "value": 57.66
+      "reason": "よごれ",
+      "ts": 1622097523781,
+      "value": 29
     }
   ],
   "settingSchema": [
     {
       "type": "key",
-      "name": "VerticalAxis"
-    },
-    {
-      "type": "text",
-      "name": "MaxV"
-    },
-    {
-      "type": "text",
-      "name": "MinV"
-    },
-    {
-      "type": "key",
       "name": "HorizontalAxis"
-    },
-    {
-      "type": "text",
-      "name": "MaxH"
-    },
-    {
-      "type": "text",
-      "name": "MinH"
     },
     {
       "type": "key",
@@ -303,27 +46,8 @@
       "name": "Timestamp"
     },
     {
-      "type": "select",
-      "name": "Format",
-      "options": ["YYYY/MM/DD", "MM/YYYY"]
-    },
-    {
       "type": "text",
       "name": "Title"
-    },
-    {
-      "type": "list",
-      "name": "Tooltip",
-      "children": [
-        {
-          "type": "text",
-          "name": "Place"
-        },
-        {
-          "type": "text",
-          "name": "DeviceName"
-        }
-      ]
     }
   ]
 }
