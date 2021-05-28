@@ -1,13 +1,16 @@
+
 [
   {
     "adaptor": "firebase",
     "firebase": {
-      "apiKey": "AIzaSyDnnUye5-A5bYOIDbLHghkN7_PeMP_Eadw",
-      "authDomain": "temperature-humidity-place.firebaseapp.com",
-      "databaseURL": "https://temperature-humidity-place.firebaseio.com",
-      "projectId": "temperature-humidity-place",
-      "storageBucket": "temperature-humidity-place.appspot.com",
-      "messagingSenderId": "1054055224282"
+      "apiKey": "AIzaSyBKX3FmSyLP-sxyQpRbBkU_7eExLZl4rRw",
+      "authDomain": "uhuru-iot-9a97e.firebaseapp.com",
+      "databaseURL": "https://uhuru-iot-9a97e-default-rtdb.firebaseio.com",
+      "projectId": "uhuru-iot-9a97e",
+      "storageBucket": "uhuru-iot-9a97e.appspot.com",
+      "messagingSenderId": "126369812025",
+      "appId": "1:126369812025:web:a11bda47ff8277c34cc7e8",
+      "measurementId": "G-HXRHB901RX"
     },
     "limit": 1000,
     "ref": "/",
