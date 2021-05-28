@@ -1,16 +1,15 @@
-
 [
   {
     "adaptor": "firebase",
     "firebase": {
-      "apiKey": "AIzaSyBKX3FmSyLP-sxyQpRbBkU_7eExLZl4rRw",
-      "authDomain": "uhuru-iot-9a97e.firebaseapp.com",
-      "databaseURL": "https://uhuru-iot-9a97e-default-rtdb.firebaseio.com",
-      "projectId": "uhuru-iot-9a97e",
-      "storageBucket": "uhuru-iot-9a97e.appspot.com",
-      "messagingSenderId": "126369812025",
-      "appId": "1:126369812025:web:a11bda47ff8277c34cc7e8",
-      "measurementId": "G-HXRHB901RX"
+      "apiKey": "AIzaSyC9ihVFfiGHXWcaml1KxnVKsAKgq-susjk",
+      "authDomain": "pareto-chart-high-charts.firebaseapp.com",
+      "databaseURL": "https://pareto-chart-high-charts-default-rtdb.firebaseio.com",
+      "projectId": "pareto-chart-high-charts",
+      "storageBucket": "pareto-chart-high-charts.appspot.com",
+      "messagingSenderId": "87887500643",
+      "appId": "1:87887500643:web:f2168433638b9d76816f56",
+      "measurementId": "G-1R8K65Z4CN"
     },
     "limit": 1000,
     "ref": "/",
