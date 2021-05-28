@@ -1,7 +1,6 @@
 var d3 = require("d3");
 var Highcharts = require("highcharts");
 require("highcharts/modules/pareto")(Highcharts);
-var moment = require("moment");
 var colData = [];
 var categoryX = [];
 var seriesData = [];
@@ -122,10 +121,10 @@ ParetoChartHighChart.prototype.addData = function (data) {
 
     this.filteredData = data
       .filter((d) => {
-        let hasLabel = d.hasOwnProperty("reason");
-        const dLabel = d["reason"];
+        let hasLabel = d.hasOwnProperty(legend);
+        const dLabel = d[legend];
         if (typeof dLabel !== "string") {
-          fireError("VerticalAxis is not a string");
+          fireError("Legend is not a string");
           hasLabel = false;
         }
         return hasLabel;
@@ -134,7 +133,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
         let hasLabel = d.hasOwnProperty(value);
         const dLabel = d[value];
         if (typeof dLabel !== "string" && typeof dLabel !== "number") {
-          fireError("VerticalAxis is not a string or number");
+          fireError("HorizontalAxis is not a string or number");
           hasLabel = false;
         }
         return hasLabel;
@@ -142,7 +141,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
       .filter((d) => {
         let hasTs = d.hasOwnProperty(ts);
         if (isNaN(d[ts])) {
-          fireError("timestamp is not a number");
+          fireError("Timestamp is not a number");
           hasTs = false;
         }
         return hasTs;
@@ -157,11 +156,11 @@ ParetoChartHighChart.prototype.addData = function (data) {
         return d[legend];
       })
       .entries(this.filteredData)
-      .sort(function (a, b) {
-        if (a.key < b.key) return -1;
-        if (a.key > b.key) return 1;
-        return 0;
-      });
+      // .sort(function (a, b) {
+      //   if (a.key < b.key) return -1;
+      //   if (a.key > b.key) return 1;
+      //   return 0;
+      // });
     this.convertData();
   } else {
     fireError("no data");
@@ -184,12 +183,31 @@ ParetoChartHighChart.prototype.convertData = function () {
 function ConvertDataAPI(that) {
   categoryX = [];
   seriesData = [];
+  let data = [];
   colData.forEach(function (val, index) {
     for (var i = 0; i < val.values.length; i++) {
-      seriesData.push(colData[index]["values"][i]["value"]);
-      categoryX.push(colData[index]["values"][i]["reason"]);
+			data.push({
+				key: colData[index]["values"][i]["value"],
+				value: {
+					value: colData[index]["values"][i]["value"],
+					reason: colData[index]["values"][i]["reason"]
+				}
+			})
+      // seriesData.push(colData[index]["values"][i]["value"]);
+      // categoryX.push(colData[index]["values"][i]["reason"]);
     }
   });
+	if (data && data.length > 0) {
+		data = data.sort( (a, b) => {
+			if (a.key < b.key) return 1;
+			if (a.key > b.key) return -1;
+			return 0;
+		})
+		data.forEach(item => {
+			categoryX.push(item.value.reason);
+			seriesData.push(item.value.value);
+		});
+	}
 }
 
 ParetoChartHighChart.prototype.resize = function (options) {
