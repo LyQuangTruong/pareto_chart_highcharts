@@ -114,12 +114,22 @@ ParetoChartHighChart.prototype.addData = function (data) {
     }
   }
 
+
   if (data instanceof Array) {
+    var dataTemple = [];
     var value = this.settings.HorizontalAxis;
     var legend = this.settings.Legend;
     var ts = this.settings.Timestamp;
+    data.forEach(item => {
+      let index = dataTemple.findIndex(ele => ele[legend] == item[legend])
+      if (index != -1) {
+        dataTemple[index][value] += item[value]
+      } else {
+        dataTemple.push(item)
+      }
+    });
 
-    this.filteredData = data
+    this.filteredData = dataTemple
       .filter((d) => {
         let hasLabel = d.hasOwnProperty(legend);
         const dLabel = d[legend];
