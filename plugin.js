@@ -196,13 +196,15 @@ function ConvertDataAPI(that) {
   categoryX = [];
   seriesData = [];
   let data = [];
+  var value = that.settings.HorizontalAxis;
+  var legend = that.settings.Legend;
   colData.forEach(function (val, index) {
     for (var i = 0; i < val.values.length; i++) {
       data.push({
-        key: colData[index]["values"][i]["value"],
+        key: colData[index]["values"][i][value],
         value: {
-          value: colData[index]["values"][i]["value"],
-          reason: colData[index]["values"][i]["reason"],
+          value: colData[index]["values"][i][value],
+          reason: colData[index]["values"][i][legend],
         },
       });
     }
