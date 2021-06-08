@@ -1280,7 +1280,7 @@
       "name": "HorizontalAxis"
     },
     {
-      "type": "select",
+      "type": "text",
       "name": "Legend"
     },
     {

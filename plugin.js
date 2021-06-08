@@ -19,9 +19,8 @@ ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
       name: "Title",
     },
     {
-      type: "select",
+      type: "text",
       name: "Legend",
-      options: ["category", "reason"],
     },
   ],
   ParetoChartHighChart.defaultSettings
