@@ -10,6 +10,7 @@ ParetoChartHighChart.defaultSettings = {
   Legend: "category",
   Timestamp: "ts",
   Title: "Pareto Chart high charts",
+  Value: "value",
 };
 
 ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
@@ -21,6 +22,10 @@ ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
     {
       type: "text",
       name: "Legend",
+    },
+    {
+      type: "text",
+      name: "Value",
     },
   ],
   ParetoChartHighChart.defaultSettings
@@ -124,18 +129,27 @@ ParetoChartHighChart.prototype.addData = function (data) {
     var legend = this.settings.Legend;
     var ts = this.settings.Timestamp;
 
-    data.forEach(item=>{
-      if (item[that.settings.Legend] != undefined && item[that.settings.Legend] != null) {
-        let index = dataTemple.findIndex(ele => ele[that.settings.Legend] == item[that.settings.Legend])
+    console.log("data", data);
+    data.forEach((item) => {
+      if (
+        item[that.settings.Legend] != undefined &&
+        item[that.settings.Legend] != null
+      ) {
+
+        let index = dataTemple.findIndex(
+          (ele) => ele[that.settings.Legend] == item[that.settings.Legend]
+        );
+
         if (index != -1) {
-          dataTemple[index][value] += item[value]
+          dataTemple[index]["that.settings.Legend"] += item["that.settings.Legend"];
         } else {
-          dataTemple.push(item)
+          dataTemple.push(item);
         }
       }
-    })
+    });
 
     this.filteredData = dataTemple
+
       .filter((d) => {
         let hasLabel = d.hasOwnProperty(legend);
         const dLabel = d[legend];
@@ -146,7 +160,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
         return hasLabel;
       })
       .filter((d) => {
-        let hasLabel = d.hasOwnProperty(value);
+        let hasLabel = d.hasOwnProperty(that.settings.Value);
         const dLabel = d[value];
         if (typeof dLabel !== "string" && typeof dLabel !== "number") {
           fireError("HorizontalAxis is not a string or number");
@@ -162,7 +176,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
         }
         return hasTs;
       })
-      .sort((a, b) => b.value - a.value);
+      .sort((a, b) => b[that.settings.Value] - a[that.settings.Value]);
     if (this.filteredData.length === 0) {
       return;
     }
