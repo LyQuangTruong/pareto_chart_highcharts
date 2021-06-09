@@ -114,6 +114,7 @@ function ParetoChartHighChart(settings, options) {
 }
 
 ParetoChartHighChart.prototype.addData = function (data) {
+  console.log("data 1", data);
   var that = this;
   function fireError(err) {
     if (that.errorCallback) {
@@ -130,24 +131,27 @@ ParetoChartHighChart.prototype.addData = function (data) {
     var ts = this.settings.Timestamp;
 
     console.log("data", data);
+
     data.forEach((item) => {
       if (
         item[that.settings.Legend] != undefined &&
         item[that.settings.Legend] != null
       ) {
-
         let index = dataTemple.findIndex(
           (ele) => ele[that.settings.Legend] == item[that.settings.Legend]
         );
 
         if (index != -1) {
-          dataTemple[index]["that.settings.Legend"] += item["that.settings.Legend"];
+          dataTemple[index]["this.settings.Legend"] +=
+            item["this.settings.Legend"];
         } else {
           dataTemple.push(item);
         }
       }
+      console.log("dataTemple", dataTemple);
     });
 
+    console.log("dataTemple", dataTemple);
     this.filteredData = dataTemple
 
       .filter((d) => {
@@ -160,12 +164,15 @@ ParetoChartHighChart.prototype.addData = function (data) {
         return hasLabel;
       })
       .filter((d) => {
-        let hasLabel = d.hasOwnProperty(that.settings.Value);
-        const dLabel = d[value];
+        let hasLabel = d.hasOwnProperty(this.settings.Value);
+        console.log("hasLabel 1", hasLabel);
+
+        const dLabel = d[this.settings.Value];
         if (typeof dLabel !== "string" && typeof dLabel !== "number") {
           fireError("HorizontalAxis is not a string or number");
           hasLabel = false;
         }
+        console.log("hasLabel 2", hasLabel);
         return hasLabel;
       })
       .filter((d) => {
