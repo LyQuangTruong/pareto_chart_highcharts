@@ -157,6 +157,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
           fireError("Legend is not a string");
           hasLabel = false;
         }
+        console.log("legend: ", legend, "hasLabel", hasLabel);
         return hasLabel;
       })
       .filter((d) => {
@@ -209,7 +210,7 @@ function ConvertDataAPI(that) {
   categoryX = [];
   seriesData = [];
   let data = [];
-  var value = that.settings.HorizontalAxis;
+  var value = that.settings.Value;
   var legend = that.settings.Legend;
   colData.forEach(function (val, index) {
     for (var i = 0; i < val.values.length; i++) {
