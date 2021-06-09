@@ -126,7 +126,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
 
   if (data instanceof Array) {
     var dataTemple = [];
-    var value = this.settings.HorizontalAxis;
+    var value = this.settings.Value;
     var legend = this.settings.Legend;
     var ts = this.settings.Timestamp;
 
@@ -142,8 +142,8 @@ ParetoChartHighChart.prototype.addData = function (data) {
         );
 
         if (index != -1) {
-          dataTemple[index]["this.settings.Legend"] +=
-            item["this.settings.Legend"];
+          dataTemple[index][value] +=
+            item[value];
         } else {
           dataTemple.push(item);
         }
@@ -164,10 +164,10 @@ ParetoChartHighChart.prototype.addData = function (data) {
         return hasLabel;
       })
       .filter((d) => {
-        let hasLabel = d.hasOwnProperty(this.settings.Value);
+        let hasLabel = d.hasOwnProperty(value);
         console.log("hasLabel 1", hasLabel);
 
-        const dLabel = d[this.settings.Value];
+        const dLabel = d[value];
         if (typeof dLabel !== "string" && typeof dLabel !== "number") {
           fireError("HorizontalAxis is not a string or number");
           hasLabel = false;
@@ -183,7 +183,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
         }
         return hasTs;
       })
-      .sort((a, b) => b[this.settings.Value] - a[this.settings.Value]);
+      .sort((a, b) => b.value - a.value);
     if (this.filteredData.length === 0) {
       return;
     }
