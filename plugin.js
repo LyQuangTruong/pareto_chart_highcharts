@@ -183,7 +183,7 @@ ParetoChartHighChart.prototype.addData = function (data) {
         }
         return hasTs;
       })
-      .sort((a, b) => b[that.settings.Value] - a[that.settings.Value]);
+      .sort((a, b) => b[this.settings.Value] - a[this.settings.Value]);
     if (this.filteredData.length === 0) {
       return;
     }
