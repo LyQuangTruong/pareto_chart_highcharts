@@ -132,8 +132,13 @@ ParetoChartHighChart.prototype.addData = function (data) {
     console.log("data", data);
 
     data.forEach((item) => {
-      if (item[value] != undefined && item[value] != null) {
-        let index = dataTemple.findIndex((ele) => ele[value] == item[value]);
+      if (
+        item[legend] != undefined &&
+        item[legend] != null &&
+        item[value] != undefined &&
+        item[value] != null
+      ) {
+        let index = dataTemple.findIndex((ele) => ele[legend] == item[legend]);
 
         if (index != -1) {
           dataTemple[index][value] += item[value];
@@ -141,10 +146,8 @@ ParetoChartHighChart.prototype.addData = function (data) {
           dataTemple.push(item);
         }
       }
-      console.log("dataTemple", dataTemple);
     });
 
-    console.log("dataTemple", dataTemple);
     this.filteredData = dataTemple
 
       .filter((d) => {
@@ -158,14 +161,11 @@ ParetoChartHighChart.prototype.addData = function (data) {
       })
       .filter((d) => {
         let hasLabel = d.hasOwnProperty(value);
-        console.log("hasLabel 1", hasLabel);
-
         const dLabel = d[value];
         if (typeof dLabel !== "string" && typeof dLabel !== "number") {
           fireError("HorizontalAxis is not a string or number");
           hasLabel = false;
         }
-        console.log("hasLabel 2", hasLabel);
         return hasLabel;
       })
       .filter((d) => {
