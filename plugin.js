@@ -133,11 +133,11 @@ ParetoChartHighChart.prototype.addData = function (data) {
 
     data.forEach((item) => {
       if (
-        item[that.settings.Legend] != undefined &&
-        item[that.settings.Legend] != null
+        item[value] != undefined &&
+        item[value] != null
       ) {
         let index = dataTemple.findIndex(
-          (ele) => ele[that.settings.Legend] == item[that.settings.Legend]
+          (ele) => ele[value] == item[value]
         );
 
         if (index != -1) {
