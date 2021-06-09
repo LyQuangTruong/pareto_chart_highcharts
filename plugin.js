@@ -6,7 +6,6 @@ var categoryX = [];
 var seriesData = [];
 
 ParetoChartHighChart.defaultSettings = {
-  HorizontalAxis: "value",
   Legend: "category",
   Timestamp: "ts",
   Title: "Pareto Chart high charts",

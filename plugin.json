@@ -1,6 +1,5 @@
 {
   "defaultSettings": {
-    "HorizontalAxis": "value",
     "Legend": "reason",
     "Timestamp": "ts",
     "Value": "value",
