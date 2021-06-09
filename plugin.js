@@ -6,10 +6,10 @@ var categoryX = [];
 var seriesData = [];
 
 ParetoChartHighChart.defaultSettings = {
-  HorizontalAxis: "value",
   Legend: "category",
   Timestamp: "ts",
   Title: "Pareto Chart high charts",
+  Value: "value",
 };
 
 ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
@@ -19,9 +19,12 @@ ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
       name: "Title",
     },
     {
-      type: "select",
+      type: "text",
       name: "Legend",
-      options: ["category", "reason"],
+    },
+    {
+      type: "text",
+      name: "Value",
     },
   ],
   ParetoChartHighChart.defaultSettings
@@ -110,6 +113,7 @@ function ParetoChartHighChart(settings, options) {
 }
 
 ParetoChartHighChart.prototype.addData = function (data) {
+  console.log("data 1", data);
   var that = this;
   function fireError(err) {
     if (that.errorCallback) {
@@ -121,22 +125,31 @@ ParetoChartHighChart.prototype.addData = function (data) {
 
   if (data instanceof Array) {
     var dataTemple = [];
-    var value = this.settings.HorizontalAxis;
+    var value = this.settings.Value;
     var legend = this.settings.Legend;
     var ts = this.settings.Timestamp;
 
-    data.forEach(item=>{
-      if (item[that.settings.Legend] != undefined && item[that.settings.Legend] != null) {
-        let index = dataTemple.findIndex(ele => ele[that.settings.Legend] == item[that.settings.Legend])
+    console.log("data", data);
+
+    data.forEach((item) => {
+      if (
+        item[legend] != undefined &&
+        item[legend] != null &&
+        item[value] != undefined &&
+        item[value] != null
+      ) {
+        let index = dataTemple.findIndex((ele) => ele[legend] == item[legend]);
+
         if (index != -1) {
-          dataTemple[index][value] += item[value]
+          dataTemple[index][value] += item[value];
         } else {
-          dataTemple.push(item)
+          dataTemple.push(item);
         }
       }
-    })
+    });
 
     this.filteredData = dataTemple
+
       .filter((d) => {
         let hasLabel = d.hasOwnProperty(legend);
         const dLabel = d[legend];
