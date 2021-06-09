@@ -132,17 +132,11 @@ ParetoChartHighChart.prototype.addData = function (data) {
     console.log("data", data);
 
     data.forEach((item) => {
-      if (
-        item[value] != undefined &&
-        item[value] != null
-      ) {
-        let index = dataTemple.findIndex(
-          (ele) => ele[value] == item[value]
-        );
+      if (item[value] != undefined && item[value] != null) {
+        let index = dataTemple.findIndex((ele) => ele[value] == item[value]);
 
         if (index != -1) {
-          dataTemple[index][value] +=
-            item[value];
+          dataTemple[index][value] += item[value];
         } else {
           dataTemple.push(item);
         }
