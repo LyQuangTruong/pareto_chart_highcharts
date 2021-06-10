@@ -86,6 +86,9 @@ function createParetoChartHighChart(that) {
         type: "column",
         zIndex: 2,
         data: seriesData,
+        tooltip: {
+          valueDecimals: 3,
+        },
       },
     ],
   });
@@ -113,7 +116,6 @@ function ParetoChartHighChart(settings, options) {
 }
 
 ParetoChartHighChart.prototype.addData = function (data) {
-  console.log("data 1", data);
   var that = this;
   function fireError(err) {
     if (that.errorCallback) {
@@ -136,10 +138,10 @@ ParetoChartHighChart.prototype.addData = function (data) {
         item[legend] != undefined &&
         item[legend] != null &&
         item[value] != undefined &&
-        item[value] != null
+        item[value] != null &&
+        item[value] > 0
       ) {
         let index = dataTemple.findIndex((ele) => ele[legend] == item[legend]);
-
         if (index != -1) {
           dataTemple[index][value] += item[value];
         } else {
@@ -209,7 +211,7 @@ function ConvertDataAPI(that) {
   categoryX = [];
   seriesData = [];
   let data = [];
-  var value = that.settings.HorizontalAxis;
+  var value = that.settings.Value;
   var legend = that.settings.Legend;
   colData.forEach(function (val, index) {
     for (var i = 0; i < val.values.length; i++) {
@@ -230,7 +232,7 @@ function ConvertDataAPI(that) {
     });
     data.forEach((item) => {
       categoryX.push(item.value.reason);
-      seriesData.push(item.value.value);
+      seriesData.push(Math.floor(item.value.value));
     });
   }
 }
@@ -242,7 +244,6 @@ ParetoChartHighChart.prototype.resize = function (options) {
 
 ParetoChartHighChart.prototype.refresh = function () {
   var that = this;
-
   ConvertDataAPI(that);
 
   if (this.axisX) this.axisX.remove();
@@ -302,6 +303,9 @@ ParetoChartHighChart.prototype.refresh = function () {
           type: "column",
           zIndex: 2,
           data: seriesData,
+          tooltip: {
+            valueDecimals: 3,
+          },
         },
       ],
     });
