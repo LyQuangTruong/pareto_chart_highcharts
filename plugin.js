@@ -10,6 +10,8 @@ ParetoChartHighChart.defaultSettings = {
   Timestamp: "ts",
   Title: "Pareto Chart high charts",
   Value: "value",
+  Max: 160,
+  Min: 0,
 };
 
 ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
@@ -26,11 +28,21 @@ ParetoChartHighChart.settings = EnebularIntelligence.SchemaProcessor(
       type: "text",
       name: "Value",
     },
+    {
+      type: "text",
+      name: "Max",
+    },
+    {
+      type: "text",
+      name: "Min",
+    },
   ],
   ParetoChartHighChart.defaultSettings
 );
 
 function createParetoChartHighChart(that) {
+  var maxPercent = that.settings.Max;
+  var minPercent = that.settings.Min;
   if (seriesData != []) seriesData = [];
   if (categoryX != []) categoryX = [];
   ConvertDataAPI(that);
@@ -61,8 +73,8 @@ function createParetoChartHighChart(that) {
         },
         minPadding: 0,
         maxPadding: 0,
-        max: 100,
-        min: 0,
+        max: Number(maxPercent),
+        min: Number(minPercent),
         opposite: true,
         labels: {
           format: "{value}%",
@@ -86,6 +98,9 @@ function createParetoChartHighChart(that) {
         type: "column",
         zIndex: 2,
         data: seriesData,
+        tooltip: {
+          valueDecimals: 3,
+        },
       },
     ],
   });
@@ -113,7 +128,6 @@ function ParetoChartHighChart(settings, options) {
 }
 
 ParetoChartHighChart.prototype.addData = function (data) {
-  console.log("data 1", data);
   var that = this;
   function fireError(err) {
     if (that.errorCallback) {
@@ -157,7 +171,6 @@ ParetoChartHighChart.prototype.addData = function (data) {
           fireError("Legend is not a string");
           hasLabel = false;
         }
-        console.log("legend: ", legend, "hasLabel", hasLabel);
         return hasLabel;
       })
       .filter((d) => {
@@ -243,7 +256,8 @@ ParetoChartHighChart.prototype.resize = function (options) {
 
 ParetoChartHighChart.prototype.refresh = function () {
   var that = this;
-
+  var maxPercent = that.settings.Max;
+  var minPercent = that.settings.Min;
   ConvertDataAPI(that);
 
   if (this.axisX) this.axisX.remove();
@@ -278,8 +292,8 @@ ParetoChartHighChart.prototype.refresh = function () {
           },
           minPadding: 0,
           maxPadding: 0,
-          max: 100,
-          min: 0,
+          max: Number(maxPercent),
+          min: Number(minPercent),
           opposite: true,
           labels: {
             format: "{value}%",
@@ -303,6 +317,9 @@ ParetoChartHighChart.prototype.refresh = function () {
           type: "column",
           zIndex: 2,
           data: seriesData,
+          tooltip: {
+            valueDecimals: 3,
+          },
         },
       ],
     });

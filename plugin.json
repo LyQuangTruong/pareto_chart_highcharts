@@ -3,7 +3,9 @@
     "Legend": "reason",
     "Timestamp": "ts",
     "Value": "value",
-    "Title": "Pareto Chart high charts"
+    "Title": "Pareto Chart high charts",
+    "Max": 160,
+    "Min": 0
   },
   "sampleData": [
     {
@@ -1612,6 +1614,14 @@
     {
       "type": "text",
       "name": "Value"
+    },
+    {
+      "type": "text",
+      "name": "Max"
+    },
+    {
+      "type": "text",
+      "name": "Min"
     }
   ]
 }
